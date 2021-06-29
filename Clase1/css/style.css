@@ -1,0 +1,8 @@
+.StartBtn{
+    display: flex;
+    justify-content: center;
+}
+
+.Ocultar{
+    display: none;
+}
