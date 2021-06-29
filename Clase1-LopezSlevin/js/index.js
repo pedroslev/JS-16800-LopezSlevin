@@ -80,6 +80,10 @@ function Next()
         document.getElementById("cincomil").classList.add("green");
         alert("Tu numero es menor igual a Cinco mil!");
         console.log("Tu numero es menor igual a Cinco mil!");
+    }else if(number > 5000)
+    {
+        alert("Tu numero es mayor a Cinco mil!");
+        console.log("Tu numero es mayor a Cinco mil!");
     }
 
 
