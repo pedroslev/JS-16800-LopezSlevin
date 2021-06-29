@@ -6,7 +6,9 @@
 ## Links
 
 - [Repo]( https://github.com/plshazer/JS-16800-LopezSlevin "<project-name> Repo")
-
+- 
+- - [View In VSCODE ONLINE]( https://github1s.com/plshazer/JS-16800-LopezSlevin "<project-name> View In VSCODE ONLINE")
+- 
 - [Live](https://plshazer.github.io/JS-16800-LopezSlevin/ "Live View")
     <p>Tener en cuenta adicionar subfolder en el context path!</p>
 
