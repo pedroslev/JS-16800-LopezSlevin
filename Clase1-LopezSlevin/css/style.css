@@ -1,8 +1,27 @@
+body{
+    background: rgb(46, 50, 61);
+}
+
+label{
+    color: white;
+}
+
 .StartBtn{
     display: flex;
     justify-content: center;
+    background-color: transparent;
 }
 
 .Ocultar{
     display: none;
+    background-color: transparent;
+}
+
+.dashboard{
+    display: flex;
+    justify-content: center;
+}
+
+.green{
+    background-color: green;
 }

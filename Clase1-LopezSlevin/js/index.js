@@ -48,6 +48,42 @@ console.log('Tu edad ' + edad);
     document.getElementById("PersonAge").value = edad;
 }
 
+function Next()
+{
+    document.getElementById("main").classList.add("Ocultar");
+    document.getElementById("secondary").classList.remove("Ocultar");
+    
+    let number = parseInt(prompt("Ingrese un numero aleatorio"));
+    
+    if(number<=10)
+    {
+        document.getElementById("diez").classList.add("green");
+        alert("Tu numero es menor igual a Diez!");
+        console.log("Tu numero es menor igual a Diez!");
+    }else if(number<=100)
+    {
+        document.getElementById("cien").classList.add("green");
+        alert("Tu numero es menor igual a Cien!");
+        console.log("Tu numero es menor igual a Cien!");
+    }else if(number<=500)
+    {
+        document.getElementById("quinientos").classList.add("green");
+        alert("Tu numero es menor igual a Quinientos!");
+        console.log("Tu numero es menor igual a Quinientos!");
+    }else if(number<=1000)
+    {
+        document.getElementById("mil").classList.add("green");
+        alert("Tu numero es menor igual a Mil!");
+        console.log();
+    }else if(number<=5000)
+    {
+        document.getElementById("cincomil").classList.add("green");
+        alert("Tu numero es menor igual a Cinco mil!");
+        console.log("Tu numero es menor igual a Cinco mil!");
+    }
+
+
+}
 
 function Reset(){
     location.reload();
