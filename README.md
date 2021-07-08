@@ -24,7 +24,7 @@
 
 **Pedro Lopez Slevin**
 
-- [Profile](https://github.com/plshazer/CryptoEyeLopezSlevin/issues "Pedro Lopez Slevin")
+- [Profile](https://github.com/plshazer "Pedro Lopez Slevin")
 
 ## 🤝 Support
 
