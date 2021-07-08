@@ -1,0 +1,90 @@
+body{
+    background: rgb(46, 50, 61);
+}
+
+.TitleContainer{
+    display: flex;
+    justify-content: center;
+    padding-top: 20em;
+}
+
+.Title{
+color: white;
+}
+
+
+
+.Start{
+background-color: green;
+color: white;
+padding: 5px;
+font-size: 0.8em;
+border-radius: 10px;
+
+
+}
+
+.StartContainer{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+
+.Ocultar{
+    display: none;
+}
+
+.FormInput{
+    padding-top: 10px;
+}
+
+.Calculador{
+    color: white;
+    display: flex;
+    justify-content: center;
+    padding-top: 20em;
+    
+}
+
+.Calcular{
+    background-color: green;
+    color: white;
+    padding: 5px;
+    font-size: 1em;
+    border-radius: 5px;
+    border-style: none;
+}
+
+.ContainerCalcular{
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.Result{
+    display: flex;
+    flex-direction: row;
+}
+
+.Resultado{
+    color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 20em;
+}
+
+.Reset{
+    background-color: red;
+    color: white;
+    padding: 5px;
+    font-size: 1em;
+    border-radius: 5px;
+    border-style: none;
+}
+
+.inputvalues{
+    border-radius: 5px;
+    display: flex;
+    
+}
