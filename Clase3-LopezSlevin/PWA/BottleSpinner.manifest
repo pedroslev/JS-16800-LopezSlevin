@@ -1,0 +1,22 @@
+{
+  "name": "BottleSpinner Progressive Web App",
+  "short_name": "BottleSpinner",
+  "description": "Aplicacion de BottleSpinner -> LopezSlevin",
+  "icons": [
+    {
+      "src": "../img/js.ico",
+      "sizes": "32x32",
+      "type": "image/ico"
+    },
+    // ...
+    {
+      "src": "../img/js.ico",
+      "sizes": "512x512",
+      "type": "image/ico"
+    }
+  ],
+  "start_url": "../index.html",
+  "display": "fullscreen",
+  "theme_color": "#B12A34",
+  "background_color": "#B12A34"
+}
