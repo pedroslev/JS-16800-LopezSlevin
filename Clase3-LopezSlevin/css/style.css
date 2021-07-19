@@ -1,0 +1,58 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
+html, body{
+    background-color: rgba(88, 29, 29, 0);
+}
+
+.main{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.start{
+    padding-top: 35em;
+    width: 450px;
+    height: 200px;
+    display: flex;
+    font-family: 'Oswald', sans-serif;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+.StartBtn{
+    width: 100px;
+}
+
+
+
+.DataColletor{
+    padding-top: 35em;
+    width: 450px;
+    height: 200px;
+    display: flex;
+    font-family: 'Oswald', sans-serif;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.gameready{
+    padding-top: 35em;
+    width: 450px;
+    height: 200px;
+    display: flex;
+    font-family: 'Oswald', sans-serif;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Ocultar{
+    display: none;
+}
