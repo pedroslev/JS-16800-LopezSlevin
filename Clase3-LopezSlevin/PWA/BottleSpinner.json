@@ -8,7 +8,7 @@
       "sizes": "32x32",
       "type": "image/ico"
     },
-    // ...
+    
     {
       "src": "../img/js.ico",
       "sizes": "512x512",
