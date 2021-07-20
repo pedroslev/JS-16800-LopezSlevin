@@ -1,9 +1,29 @@
-self.addEventListener('install', function(event){
-    event.respondWith(
-        //Try the cache
-        caches.match(event.request).then(function(responde){
-            //return it if there is a responde, or else fetch again
-            return responde || fetch(event.request);
-        })
-    )
+const BottleFlipper = "bottleflipper"
+const assets = [
+  "/*",
+]
+
+self.addEventListener("install", installEvent => {
+  installEvent.waitUntil(
+    caches.open(BottleFlipper).then(cache => {
+      cache.addAll(assets)
+    })
+  )
 })
+
+self.addEventListener("fetch", fetchEvent => {
+    fetchEvent.respondWith(
+      caches.match(fetchEvent.request).then(res => {
+        return res || fetch(fetchEvent.request)
+      })
+    )
+  })
+
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function() {
+      navigator.serviceWorker
+        .register("/serviceWorker.js")
+        .then(res => console.log("service worker registered"))
+        .catch(err => console.log("service worker not registered", err))
+    })
+  }
