@@ -51,11 +51,18 @@ function PushData(){
 }
 
 function gameready(){
+    //arrays vacios
+    if(playerarray.length == 0){
+        alert("No posees ningun usuario cargado")
+        PushData();
+    }else{
     //Ocultar y display de siguiente div
     document.getElementById("DataColletor").classList.add("Ocultar");
     document.getElementById("gameready").classList.remove("Ocultar");
     //Primer BottleSpin! :D
     BottleSpin();
+    }
+    
 
 }
 
