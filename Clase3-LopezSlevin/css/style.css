@@ -3,6 +3,7 @@
 
 html, body{
     background-color: rgba(88, 29, 29, 0);
+    z-index: 0;
 }
 
 .main{
@@ -12,7 +13,7 @@ align-items: center;
 }
 
 .start{
-    padding-top: 35em;
+    padding-top: 30em;
     width: 450px;
     height: 200px;
     display: flex;
@@ -31,7 +32,7 @@ align-items: center;
 
 
 .DataColletor{
-    padding-top: 35em;
+    padding-top: 30em;
     width: 450px;
     height: 200px;
     display: flex;
@@ -42,7 +43,7 @@ align-items: center;
     flex-direction: column;
 }
 .gameready{
-    padding-top: 35em;
+    padding-top: 30em;
     width: 450px;
     height: 200px;
     display: flex;
@@ -55,4 +56,12 @@ align-items: center;
 
 .Ocultar{
     display: none;
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    color: white;
+    padding-top: 35em;
 }

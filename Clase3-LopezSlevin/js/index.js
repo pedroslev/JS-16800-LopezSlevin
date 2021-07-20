@@ -42,7 +42,6 @@ function PushData(){
     }else{
     //push de cada valor que se toma luego de llenar los datos -> se llena el array de objetos
     playerarray.push(new players(id, document.getElementById("Nombre").value, document.getElementById("Sexo").value, document.getElementById("Interes").value));
-    bolsa.push(new players(id, document.getElementById("Nombre").value, document.getElementById("Sexo").value, document.getElementById("Interes").value));
     //debug log :)
     for (let index = 0; index < playerarray.length; index++) {
       console.log(playerarray[index]);
@@ -83,12 +82,18 @@ function BottleSpin(){
                     //recorro interes del array de intereses del tirador para agregar las coincidencias de interes de acuerdo con su sexo
                   for (let i = 0; i < playerhombres.length; i++) {
                       if(playerhombres[i].interes == "Hombres"){
-                        bolsa.push(new players(playerhombres[i].id, playerhombres[i].nombre));
+                        let a = playerhombres[i].id;
+                        let b = playerhombres[i].nombre;
+                        bolsa.push(new players(a, b));
                       }
-                    //check de interes sin preferencia para incluir con doble posibilidad a jugadores sin orientacion definida pero con sexo de interes del tirador
+                  }
+                  for (let i = 0; i < playerinteresA.length; i++) {
+                      //check de interes sin preferencia para incluir con doble posibilidad a jugadores sin orientacion definida pero con sexo de interes del tirador
                     if(playerinteresA[i].sexo == "Masculino"){
-                    bolsa.push(new players(playerinteresA[i].id, playerinteresA[i].nombre));
-                    }
+                        let a = playerinteresA[i].id;
+                        let b = playerinteresA[i].nombre;
+                        bolsa.push(new players(a, b));
+                        }
                   }
                   
 
@@ -96,12 +101,19 @@ function BottleSpin(){
                     //recorro interes del array de intereses del tirador para agregar las coincidencias de interes de acuerdo con su sexo
                     for (let index = 0; index < playerhombres.length; index++) {
                         if(playerhombres[index].interes == "Mujeres"){
-                          bolsa.push(new players(playerhombres[index].id, playerhombres[index].nombre));
+                        let a = playerhombres[index].id;
+                        let b = playerhombres[index].nombre;
+                          bolsa.push(new players(a, b));
                         }
+                    }
+                    for (let index = 0; index < playerinteresA.length; index++) {
                         //check de interes sin preferencia para incluir con doble posibilidad a jugadores sin orientacion definida pero con sexo de interes del tirador
                         if(playerinteresA[index].sexo == "Masculino"){
-                          bolsa.push(new players(playerinteresA[index].id, playerinteresA[index].nombre));
-                        }
+                            let a = playerinteresA[index].id;
+                            let b = playerinteresA[index].nombre;
+                            bolsa.push(new players(a, b));
+                          }
+                        
                     }
                     
                 }
@@ -115,12 +127,21 @@ function BottleSpin(){
                     //recorro interes del array de intereses del tirador para agregar las coincidencias de interes de acuerdo con su sexo
                     for (let index = 0; index < playermujeres.length; index++) {
                         if(playermujeres[index].interes == "Hombres"){
-                          bolsa.push(new players(playermujeres[index].id, playermujeres[index].nombre));
+                            let a = playermujeres[index].id;
+                            let b = playermujeres[index].nombre;
+                          bolsa.push(new players(a, b));
                         }
+                    }
+                    
+                    for (let index = 0; index < playerinteresA.length; index++) {
                         //check de interes sin preferencia para incluir con doble posibilidad a jugadores sin orientacion definida pero con sexo de interes del tirador
                         if(playerinteresA[index].sexo == "Femenino"){
-                        bolsa.push(new players(playerinteresA[index].id, playerinteresA[index].nombre));
-                        }
+                            let a = playerinteresA[index].id;
+                            let b = playerinteresA[index].nombre;
+                            bolsa.push(new players(a, b));
+                            }
+                        
+                        
                     }
                     
                     
@@ -128,12 +149,19 @@ function BottleSpin(){
                     //recorro interes del array de intereses del tirador para agregar las coincidencias de interes de acuerdo con su sexo
                     for (let index = 0; index < playermujeres.length; index++) {
                         if(playermujeres[index].interes == "Mujeres"){
-                          bolsa.push(new players(playermujeres[index].id, playermujeres[index].nombre));
+                            let a = playermujeres[index].id;
+                            let b = playermujeres[index].nombre;
+                          bolsa.push(new players(a, b));
                         }
+                    }
+
+                    for (let index = 0; index < playerinteresA.length; index++) {
                         //check de interes sin preferencia para incluir con doble posibilidad a jugadores sin orientacion definida pero con sexo de interes del tirador
                         if(playerinteresA[index].sexo == "Femenino"){
-                        bolsa.push(new players(playerinteresA[index].id, playerinteresA[index].nombre));
-                        }
+                            let a = playerinteresA[index].id;
+                            let b = playerinteresA[index].nombre;
+                            bolsa.push(new players(a, b));
+                            }
                     }
                     
                 }
@@ -144,23 +172,36 @@ function BottleSpin(){
                 //check del sexo del tirador-> genera dependencia al apuntado
                 if(playerarray[tirador].sexo == "Masculino"){
                     //recorro interes del array de intereses del tirador para agregar las coincidencias de interes de acuerdo con su sexo
-                    for (let index = 0; index < playerarraymujeres.length; index++) {
+                    for (let index = 0; index < playerarray.length; index++) {
                         if(playerarray[index].interes == "Hombres"){
-                          bolsa.push(new players(playermujeres[index].id, playermujeres[index].nombre));
+                            let a = playerarray[index].id;
+                            let b = playerarray[index].nombre;
+                          bolsa.push(new players(a, b));
                         }
-                        //check de interes sin preferencia para incluir con doble posibilidad a jugadores sin orientacion definida pero con sexo de interes del tirador
+                        
+                    }
+                    //check de interes sin preferencia para incluir con doble posibilidad a jugadores sin orientacion definida pero con sexo de interes del tirador
+                    for (let index = 0; index < playerinteresA.length; index++) {
+                        let a = playerinteresA[index].id;
+                        let b =playerinteresA[index].nombre;
                         //no check, no tiene orientacion definida
-                        bolsa.push(new players(playerinteresA[index].id, playerinteresA[index].nombre));
+                        bolsa.push(new players(a, b));
                     }
                 }else{
                     //recorro interes del array de intereses del tirador para agregar las coincidencias de interes de acuerdo con su sexo
                     for (let index = 0; index < playerarray.length; index++) {
                         if(playerarray[index].interes == "Mujeres"){
-                          bolsa.push(new players(playermujeres[index].id, playermujeres[index].nombre));
+                            let a = playerarray[index].id;
+                            let b = playerarray[index].nombre;
+                          bolsa.push(new players(a, b));
                         }
+                    }
+                    for (let index = 0; index < playerinteresA.length; index++) {
                         //check de interes sin preferencia para incluir con doble posibilidad a jugadores sin orientacion definida pero con sexo de interes del tirador
                         //no check, no tiene orientacion definida
-                        bolsa.push(new players(playerinteresA[index].id, playerinteresA[index].nombre));
+                        let a = playerinteresA[index].id;
+                        let b = playerinteresA[index].nombre;
+                        bolsa.push(new players(a, b));
                     }
                 }
             break;
@@ -175,13 +216,22 @@ function BottleSpin(){
         //randomizer para seleccionar a quien apunta la botella
         seleccionado = parseInt(Math.random() * (bolsa.length - 0) + 0);
 
+        if(bolsa.length == 0){
+            alert("lo siento, no tienes coincidencias ;(")
+        }else{
         //Check para que la botella no apunte a uno mismo
         while(bolsa[seleccionado].id == playerarray[tirador].id){
-            seleccionado = parseInt(Math.random() * (bolsa.length - 0) + 0);
+           seleccionado = parseInt(Math.random() * (bolsa.length - 0) + 0);
         }
-        
         //Display del apuntado por la botella
-        document.getElementById("tirador").innerHTML = bolsa[seleccionado].nombre;
+        document.getElementById("seleccionado").innerHTML = bolsa[seleccionado].nombre;
+        }
+
+        
+        
+
+        
+        
 
         //Increment del turno para el tirador, si es el ultimo vuelve a empezar la ronda
         if(tirador == playerarray.length - 1){
@@ -189,5 +239,6 @@ function BottleSpin(){
         }else{
             tirador = tirador + 1;
         }
-    
+        //vacio la bolsa de seleccionados para no perder criterio de seleccion
+        bolsa =[]
 }
