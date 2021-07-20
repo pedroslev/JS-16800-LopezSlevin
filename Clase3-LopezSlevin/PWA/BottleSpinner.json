@@ -4,13 +4,13 @@
   "description": "Aplicacion de BottleSpinner -> LopezSlevin",
   "icons": [
     {
-      "src": "../img/js.ico",
+      "src": "../img/icon.png",
       "sizes": "32x32",
       "type": "image/ico"
     },
     
     {
-      "src": "../img/js.ico",
+      "src": "../img/icon.png",
       "sizes": "512x512",
       "type": "image/ico"
     }
