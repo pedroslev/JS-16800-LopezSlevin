@@ -1,0 +1,60 @@
+.Brand{
+    font-family: 'Ubuntu Mono', monospace;
+    font-weight: 1000;
+    display: flex;
+    justify-content: center;
+    padding-top: 2em;
+}
+
+.formgrid{
+    background: #6c757d;
+    box-shadow: 5px 10px 8px 10px #808080;
+    padding: 2em;
+    border-radius: 50px;
+    display: grid;
+    grid-template-columns: 2;
+    grid-template-rows: 1;
+    color: black;
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: 1.5em;
+}
+
+.upload{
+    display: flex;
+    justify-content: center;
+    padding-top: 1.5em;
+}
+
+.Productos{
+    display: grid;
+    grid-column-start: 1;
+    padding-right: 10px;
+}
+
+.Categorias{
+    display: grid;
+    grid-column-start: 2;
+    padding-left: 10px;
+}
+
+.EliminarCategorias{
+    display: grid;
+    grid-column-start: 2;
+    padding-left: 10px;
+}
+
+
+@media only screen and (max-width: 400px) {
+    .Productos{
+        display: grid;
+        grid-column-start: 1;
+        padding-right: 10px;
+    }
+    
+    .Categorias{
+        padding-top: 4em;
+        display: grid;
+        grid-column-start: 1;
+        padding-left: 10px;
+    }
+}
