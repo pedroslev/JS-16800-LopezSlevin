@@ -9,10 +9,9 @@
     <link rel="stylesheet" href="./css/menu.css">
     <link rel="shortcut icon" href="./media/icon.ico" type="image/x-icon">
 </head>
-<body>
-    <script src="./js/console.js"></script>
+<body onload=MuestreoProds();>
     <div class="Brand">
-        <h1>DevelopBar</h1>
+        <h1>DevBar</h1>
     </div>
     <div class="Slogan">
         <p>A bar made by developers for developers</p>
@@ -24,7 +23,22 @@
     </nav>
     
 <section id="productos" class="Productos">
-<!-- Futuro muestro de productos -->
+<!-- producto de prueba para luego -->
+<div class="card" style="width: 12rem;">
+        <img class="card-img-top" src="./media/hamburguesa.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Hamburguesa</h5>
+          <p class="card-text">150gr de tapa arterias</p>
+          <div class="form-group mx-sm-3 mb-2">
+            <input type="Number" class="form-control" id="cantidad" placeholder="Cantidad">
+          </div>
+          <input type="hidden" id="idprod">
+          <button type="button" class="btn btn-primary">Ordenar</button>
+        </div>
+      </div>
+    
+
+
 </section>
 </body>
 

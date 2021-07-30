@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+ <head>
+	<meta charset="utf-8">
+	<title>DevBar Console Login</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<link href="css/login.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/particles.css">
+	<link rel="icon" type="image/x-icon" href="media/icon.ico"/>
+</head>
+
+  <body class="text-center">
+
+    <script src="./js/login.js"></script>
+    <div id="particles-js"></div>
+    <form class="form-signin">
+      <img class="mb-4" src="media/icon.png" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">DevBar Login</h1>
+      <label for="inputEmail" class="sr-only">Usuario</label>
+      <input type="name" id="Usuario" class="form-control" placeholder="Usuario" required>
+      <div style="padding-top: 10px;">
+        <label for="inputPassword" class="sr-only">Contraseña</label>
+        <input type="password" id="Contrasena" class="form-control" placeholder="Contraseña" required>
+      </div>
+      <button class="btn btn-lg btn-primary" type="button" onclick="Login(document.getElementById('Usuario').value, document.getElementById('Contrasena').value);">Ingresar</button>
+      <a href="https://github.com/plshazer" target="_blank"><p class="mt-5 mb-3 text-muted">&copy;pedroslevv 2021 </p></a>
+      <p class="mt-1 mb-3 text-muted"> Versión 0.0.1</p>
+    </form>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>    
+  </body>
+  <script src="./js/particles.js"></script>
+  
+</html>

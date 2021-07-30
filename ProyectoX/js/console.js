@@ -12,6 +12,9 @@ class productos{
 let id;
 let productosarray = [];
 let categoriasarray = [];
+let usersession;
+
+
 
 function ClearSelect(domElement){
     if(categoriasarray.length != 0){
@@ -51,6 +54,9 @@ function UploadProducto(nombre, categoria, descripcion, precio){
 
     //debug
     ArrayDebug(productosarray);
+
+    //Storage
+    SaveItems("productos", JSON.stringify(productosarray));
     }else{
         alert("Por favor, llena los valores antes de cargar el producto");
         return;
@@ -96,6 +102,7 @@ function UploadCategorias(categoria){
     //debug
     ArrayDebug(categoriasarray);
     document.getElementById('nombrecategoria').value = '';
+    SaveItems("categorias", JSON.stringify(categoriasarray));
     MuestreoCategorias();
     }
     
@@ -110,5 +117,19 @@ let aux = 0;
             delete categoriasarray[index]
         }
     }
+    SaveItems("categorias", JSON.stringify(categoriasarray));
     MuestreoCategorias();
+}
+
+function SaveItems(clave, valor){
+    localStorage.setItem(clave, valor);
+}
+
+function LoginCheck(){
+    usersession = localStorage.getItem('usersession');
+    console.log(usersession);
+    if(usersession != true){
+        window.location.href = "restricted.html";
+    }
+    
 }

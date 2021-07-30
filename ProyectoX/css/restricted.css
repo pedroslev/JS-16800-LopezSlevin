@@ -1,31 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
 
-body{
-    background-image: url("../media/paper.png");
-}
 
-.Brand{
+.restricted{
+    display: flex;
+    justify-content: center;
     font-family: 'Ubuntu Mono', monospace;
     font-weight: 1000;
-    display: flex;
-    justify-content: center;
-    padding-top: 2em;
+    padding-top: 25em;
 }
 
-.Slogan{
+.restrictedinfo{
+    display: flex;
+    justify-content: center;
     font-family: 'Ubuntu Mono', monospace;
-    display: flex;
-    justify-content: center;
-    font-size: 1em;
+    font-weight: 1000;
 }
 
-.Prods{
-    display: flex;
-    justify-content: center;
-    flex-grow: 1;
-}
-
-.detail{
-font-size: 0.5em;
-}
