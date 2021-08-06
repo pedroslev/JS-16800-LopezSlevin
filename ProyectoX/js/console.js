@@ -9,12 +9,37 @@ class productos{
     }
 }
 
+//Obtiene todos los valores por mas que cierre y vuelva a abrir el navegador por error o recargue para el muestreo en consola
+function Obtencion(){
+    productosarray = JSON.parse(GetItems("productos"));
+    categoriasarray = JSON.parse(GetItems("categorias"));
+    MuestreoCategorias();
+    MuestreoProductos();
+}
+
+//Debug functions
+//Funcion para Debug -> vacio todos los productos y categorias
+function Limpieza(){
+    localStorage.clear();
+}
+//Muestreo de array
+function ArrayDebug(array){
+    for (let index = 0; index < array.length; index++) {
+        console.log(array[index]);
+    }
+}
+
+//Obtencion de variables en el localstorage
+function GetItems(clave){
+    return localStorage.getItem(clave);
+}
 //constructor de globales
 let id;
 let productosarray = [];
 let categoriasarray = [];
 let usersession;
 
+//Limpia el selector de categorias para no duplicar en cuanto al muestreo -> deberia pasarlo a jquery
 function ClearSelectCategorias(domElement){
     if(categoriasarray.length != 0){
         let select = document.querySelectorAll('#'+domElement+' option');
@@ -32,6 +57,7 @@ function ClearSelectCategorias(domElement){
     }
 }
 
+//Limpiar el selector de productos para no duplicar en cuanto al muestreo -> deberia pasarlo a jquery
 function ClearSelectProductos(domElement){
     if(productosarray.length != 0){
         let select = document.querySelectorAll('#'+domElement+' option');
@@ -58,6 +84,7 @@ function MuestreoProductos(){
     ClearSelectProductos("productoaeliminar");
 }
 
+//Subida de producto -> faltan imagenes dinamicas en prox entrega si messi quiere
 function UploadProducto(nombre, categoria, descripcion, precio){
     //check values for null input
     if(CheckProductForm()){
@@ -77,12 +104,8 @@ function UploadProducto(nombre, categoria, descripcion, precio){
 MuestreoProductos();
 }
 
-function ArrayDebug(array){
-    for (let index = 0; index < array.length; index++) {
-        console.log(array[index]);
-    }
-}
 
+//Checkeo de ingreso de todos los valores de form de carga
 function CheckProductForm(){
     if(document.getElementById('nombre').value == '' || document.getElementById('descripcion').value == '' || document.getElementById('precio').value == '' || document.getElementById('categoria').value == "Aun no hay categorias" || document.getElementById('categoria').value == "")
     {
@@ -95,14 +118,15 @@ function CheckProductForm(){
     }
 }
 
+//Vaciado de form de carga para cuando es exitoso/erroneo
 function ClearFormProductos(){
     document.getElementById('nombre').value = '';
         document.getElementById('descripcion').value = '';
         document.getElementById('precio').value = '';
 }
 
+//Subida de categorias -> form categorias upload
 function UploadCategorias(categoria){
-
     if(document.getElementById('nombrecategoria').value == ''){
         alert('No es posible cargar una categoria nula.');
         return;
@@ -118,6 +142,7 @@ function UploadCategorias(categoria){
     
 }
 
+//Eliminacion de valor en array de cateria -> falta evitar el empty space en memoria
 function DeleteCategorias(categoria){
 let aux = 0;
     for (let index = 0; index < categoriasarray.length; index++) {
@@ -131,13 +156,20 @@ let aux = 0;
     MuestreoCategorias();
 }
 
+//Eliminacion de producto sin dejar empty space en memoria
 function DeleteProducto(producto){
     let aux = 0
+    let deleted = false;
+    let recorrido = productosarray.length - 1;
     if(document.getElementById('productoaeliminar')[0].textContent != document.getElementById('SinProductos')){
-        for (let index = 0; index < productosarray.length; index++) {
+        for (let index = 0; index < recorrido; index++) {
             if(productosarray[index].nombre == producto){
                 aux = index;
                 delete productosarray[index];
+                deleted = true
+            }
+            if(deleted){
+                productosarray[index - 1] = productosarray[index + 1]
             }
         }
         SaveItems("productos", JSON.stringify(productosarray));
@@ -145,10 +177,12 @@ function DeleteProducto(producto){
     }
 }
 
+//Guardado en localstorage de valores generico
 function SaveItems(clave, valor){
     localStorage.setItem(clave, valor);
 }
 
+//Check de si el usuario se encuentra logeado
 function LoginCheck(){
     usersession = localStorage.getItem('usersession');
     console.log(usersession);
