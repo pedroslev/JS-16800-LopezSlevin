@@ -33,14 +33,12 @@
 
 .Categorias{
     display: grid;
-    grid-column-start: 2;
-    padding-left: 10px;
+    grid-column-start: 1;
 }
 
 .EliminarCategorias{
     display: grid;
-    grid-column-start: 2;
-    padding-left: 10px;
+    grid-column-start: 1;
 }
 
 
@@ -55,6 +53,5 @@
         padding-top: 4em;
         display: grid;
         grid-column-start: 1;
-        padding-left: 10px;
     }
 }

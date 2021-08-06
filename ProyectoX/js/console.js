@@ -8,20 +8,17 @@ class productos{
         this.precio = precio;
     }
 }
+
 //constructor de globales
 let id;
 let productosarray = [];
 let categoriasarray = [];
 let usersession;
 
-
-
-function ClearSelect(domElement){
+function ClearSelectCategorias(domElement){
     if(categoriasarray.length != 0){
         let select = document.querySelectorAll('#'+domElement+' option');
         select.forEach( o => o.remove());
-        
-        //let selectBox = document.getElementById(domElement)[0];
         categoriasarray.sort();
         for (let index = 0; index < categoriasarray.length; index++) {
             if(categoriasarray[index] != undefined){
@@ -31,18 +28,34 @@ function ClearSelect(domElement){
                 console.log(selectBox);
                 selectBox.add(option);
             }
-            
-            
         }
     }
 }
 
+function ClearSelectProductos(domElement){
+    if(productosarray.length != 0){
+        let select = document.querySelectorAll('#'+domElement+' option');
+        select.forEach( o => o.remove());
+        productosarray.sort();
+        for (let index = 0; index < productosarray.length; index++) {
+            if(productosarray[index] != undefined){
+                let option = document.createElement('option');
+                option.text = productosarray[index].nombre;
+                let selectBox = document.getElementById(domElement);
+                console.log(selectBox);
+                selectBox.add(option);
+            }
+        }
+    }
+}
 
 function MuestreoCategorias(){
+    ClearSelectCategorias("categoria");
+    ClearSelectCategorias("categoriaeliminar");
+}
 
-    ClearSelect("categoria");
-    ClearSelect("categoriaeliminar");
-
+function MuestreoProductos(){
+    ClearSelectProductos("productoaeliminar");
 }
 
 function UploadProducto(nombre, categoria, descripcion, precio){
@@ -61,10 +74,8 @@ function UploadProducto(nombre, categoria, descripcion, precio){
         alert("Por favor, llena los valores antes de cargar el producto");
         return;
         }
-
+MuestreoProductos();
 }
-
-
 
 function ArrayDebug(array){
     for (let index = 0; index < array.length; index++) {
@@ -89,7 +100,6 @@ function ClearFormProductos(){
         document.getElementById('descripcion').value = '';
         document.getElementById('precio').value = '';
 }
-
 
 function UploadCategorias(categoria){
 
@@ -121,6 +131,20 @@ let aux = 0;
     MuestreoCategorias();
 }
 
+function DeleteProducto(producto){
+    let aux = 0
+    if(document.getElementById('productoaeliminar')[0].textContent != document.getElementById('SinProductos')){
+        for (let index = 0; index < productosarray.length; index++) {
+            if(productosarray[index].nombre == producto){
+                aux = index;
+                delete productosarray[index];
+            }
+        }
+        SaveItems("productos", JSON.stringify(productosarray));
+        MuestreoProductos();
+    }
+}
+
 function SaveItems(clave, valor){
     localStorage.setItem(clave, valor);
 }
@@ -128,7 +152,7 @@ function SaveItems(clave, valor){
 function LoginCheck(){
     usersession = localStorage.getItem('usersession');
     console.log(usersession);
-    if(usersession != true){
+    if(usersession == false){
         window.location.href = "restricted.html";
     }
     

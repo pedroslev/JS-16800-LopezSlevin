@@ -1,17 +1,16 @@
 localStorage.setItem('usersession', false);
+const usuario = "admin";
+const pass = "admin";
 
 function Login(user, password){
-    console.log(user);
-    console.log(password);
-    if(user == "admin" && password == "admin")
-    {
+    if(user == usuario && password == pass)
+    {   
         localStorage.setItem('usersession', true)
-        //alert("login correcto");
         window.location.href = "consola.html";
 
     }else{
         
-        if(user == "admin" && password != "admin")
+        if(user == usuario && password != pass)
         {
             alert("Clave incorrecta");
             document.getElementById('Contrasena').value = "";
