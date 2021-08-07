@@ -242,3 +242,36 @@ function LoginCheck(){
     }
     
 }
+
+
+//testeo de importacion de array de objetos en almacenamiento de productos
+function ExportJSON(){
+
+if(productosarray.length == 0 ){
+    alert("Aun no hay productos existentes que se puedan exportar");
+}else{
+    //conversion de productos a JSON en otra variable
+    let json = JSON.stringify(productosarray);
+
+    //conversion JSON string a BLOB ->  fichero de  datos planos inmutables.
+    json = [json];
+    let blob1 = new Blob(json, { type: "text/plain;charset=utf-8" });
+
+    //muchisima ayuda de stackoverflow por aca
+    //Check the Browser.
+    let isIE = false || !!document.documentMode;
+    if (isIE) {
+        window.navigator.msSaveBlob(blob1, "productos.json");
+    } else {
+        let url = window.URL || window.webkitURL;
+        link = url.createObjectURL(blob1);
+        let a = document.createElement("a");
+        a.download = "productos.json";
+        a.href = link;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
+}
+    
+}
