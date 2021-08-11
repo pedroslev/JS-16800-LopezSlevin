@@ -48,6 +48,10 @@
                     <label for="Precio" style="padding-bottom: 5px;">Precio</label>
                     <input type="number" class="form-control" id="precio" placeholder="">
                   </div>
+                  <div class="form-group" style="padding-top: 10px;">
+                    <label for="Precio" style="padding-bottom: 5px;">Foto</label>
+                    <input type="file" id="foto" class="form-control">
+                  </div>
                   <div class="upload">
                     <button type="button" class="btn btn-success" onclick="UploadProducto(document.getElementById('nombre').value, document.getElementById('categoria').value, document.getElementById('descripcion').value, document.getElementById('precio').value);">Cargar</button>
                     <button type="button" style="margin-left: 1em;" class="btn btn-dark" onclick="ExportJSON();">Exportar</button>

@@ -56,7 +56,6 @@ function ClearSelectCategorias(domElement){
                 let option = document.createElement('option');
                 option.text = categoriasarray[index];
                 let selectBox = document.getElementById(domElement);
-                console.log(selectBox);
                 selectBox.add(option);
             }
         }
@@ -66,14 +65,14 @@ function ClearSelectCategorias(domElement){
         let option = document.createElement('option');
         option.text = "Aun no hay categorias";
         let selectBox = document.getElementById(domElement);
-        console.log(selectBox);
         selectBox.add(option);
     }
 }
 
 //Limpiar el selector de productos para no duplicar en cuanto al muestreo -> deberia pasarlo a jquery
 function ClearSelectProductos(domElement){
-    if(productosarray.length != 0){
+    if(productosarray != null){
+        if(productosarray.length != 0){
         let select = document.querySelectorAll('#'+domElement+' option');
         select.forEach( o => o.remove());
         productosarray.sort();
@@ -82,10 +81,10 @@ function ClearSelectProductos(domElement){
                 let option = document.createElement('option');
                 option.text = productosarray[index].nombre;
                 let selectBox = document.getElementById(domElement);
-                console.log(selectBox);
                 selectBox.add(option);
             }
-        }
+        }}
+        
     }else{
         let select = document.querySelectorAll('#'+domElement+' option');
         select.forEach( o => o.remove());
@@ -110,6 +109,10 @@ function MuestreoProductos(){
 function UploadProducto(nombre, categoria, descripcion, precio){
     //check values for null input
     if(CheckProductForm()){
+
+    if(productosarray == null){
+        productosarray = [];
+    }
     id = productosarray.length;
     productosarray.push(new productos(id, nombre, categoria, descripcion, precio));
     ClearFormProductos();
@@ -164,68 +167,47 @@ function UploadCategorias(categoria){
     
 }
 
-//Eliminacion de valor en array de cateria -> falta evitar el empty space en memoria
+//Eliminacion de categoria sin dejar empty space en memoria
 function DeleteCategorias(categoria){
     let used = false;
-    for (let index = 0; index < productosarray.length; index++) {
-    if(productosarray[index].categoria == categoria){
-        used = true;
+    if(productosarray != null){
+        for (let index = 0; index < productosarray.length; index++) {
+            if(productosarray[index].categoria == categoria){
+                used = true;
+            }
+            }
     }
-    }
-
+    
     if(used == false){
-        if(categoriasarray.length != 1){
-            let aux = 0;
+        let categoriasnuevas = [];
         for (let index = 0; index < categoriasarray.length; index++) {
-            if(categoriasarray[index] == categoria){
-                console.log("entro");
-                aux = index;
-                delete categoriasarray[index]
+            if (categoriasarray[index] != categoria) {
+                categoriasnuevas.push(categoriasarray[index]);
             }
         }
+        categoriasarray = categoriasnuevas;
+
         SaveItems("categorias", JSON.stringify(categoriasarray));
         MuestreoCategorias();
-        }else{
-            let arrayaux = [];
-            categoriasarray = arrayaux;
-            SaveItems("categorias", JSON.stringify(categoriasarray));
-            MuestreoCategorias();
-        }
     }else{
         alert("La categoria a eliminar esta en uso en un producto, por lo tanto no es posible eliminarla");
     }
-    
-
 }
 
 //Eliminacion de producto sin dejar empty space en memoria
 function DeleteProducto(producto){
-    let aux = 0
-    let deleted = false;
-    let recorrido = productosarray.length;
-    if(productosarray.length != 1){
-        recorrido = productosarray.length - 1;
-        if(document.getElementById('productoaeliminar')[0].textContent != document.getElementById('SinProductos')){
-            for (let index = 0; index < recorrido; index++) {
-                if(productosarray[index].nombre == producto){
-                    aux = index;
-                    delete productosarray[index];
-                    deleted = true
-                }
-                if(deleted){
-                    productosarray[index - 1] = productosarray[index + 1]
-                }
-            }
-    }
     
-        SaveItems("productos", JSON.stringify(productosarray));
-        MuestreoProductos();
-    }else{
-        let arrayaux = []
-        productosarray = arrayaux;
-        SaveItems("productos", JSON.stringify(productosarray));
-        MuestreoProductos();
+    let productosnuevos = [];
+
+    for (let index = 0; index < productosarray.length; index++) {
+        if(productosarray[index].nombre != producto){
+            productosnuevos.push(productosarray[index]);
+        }
     }
+        productosarray = productosnuevos;
+
+        SaveItems("productos", JSON.stringify(productosarray));
+        MuestreoProductos();
 }
 
 //Guardado en localstorage de valores generico
@@ -236,7 +218,6 @@ function SaveItems(clave, valor){
 //Check de si el usuario se encuentra logeado
 function LoginCheck(){
     usersession = localStorage.getItem('usersession');
-    console.log(usersession);
     if(usersession == false || usersession == null){
         window.location.href = "restricted.html";
     }
@@ -275,3 +256,7 @@ if(productosarray.length == 0 ){
 }
     
 }
+
+/*
+foto.substring(foto.length, foto.lastIndexOf("\\"))
+*/
