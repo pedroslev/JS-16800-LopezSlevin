@@ -1,11 +1,12 @@
 //constructor del producto
 class productos{
-    constructor(id, nombre, categoria, descripcion, precio){
+    constructor(id, nombre, categoria, descripcion, precio, foto){
         this.id = id;
         this.nombre = nombre.toUpperCase();
         this.categoria = categoria;
         this.descripcion = descripcion;
         this.precio = precio;
+        this.foto = foto
     }
 }
 //constructor de globales
@@ -103,23 +104,61 @@ function MuestreoCategorias(){
 
 function MuestreoProductos(){
     ClearSelectProductos("productoaeliminar");
-}
+
+    if(productosarray != undefined){
+
+        //eliminar todo lo anterior
+        if (productosarray != 0) {
+            $("#tablaproductos").empty();      
+        }
+        
+
+    for (let index = 0; index < productosarray.length; index++) {
+        let content = `<tr>
+        <td> ${productosarray[index].id}</td>
+        <td> ${productosarray[index].nombre} </td>
+        <td> ${productosarray[index].categoria} </td>
+        <td> ${productosarray[index].descripcion} </td>
+        <td> $${productosarray[index].precio} </td>
+        </tr>`;
+      $("#tablaproductos").append(content);    
+            }
+        }
+    }
 
 //Subida de producto -> faltan imagenes dinamicas en prox entrega si messi quiere
 function UploadProducto(nombre, categoria, descripcion, precio){
+
     //check values for null input
     if(CheckProductForm()){
 
     if(productosarray == null){
         productosarray = [];
+    }else{
+        id = productosarray.length;
     }
-    id = productosarray.length;
-    productosarray.push(new productos(id, nombre, categoria, descripcion, precio));
-    ClearFormProductos();
+    
+    if(id == 0){
+        productosarray.push(new productos(id, nombre, categoria, descripcion, foto));
+        ClearFormProductos();
+    }else{
+        let repetido = true;
 
-    //debug
-    ArrayDebug(productosarray);
+    for (let index = 0; index < productosarray.length; index++) {
+        if(nombre.toUpperCase() == productosarray[index].nombre){
+            alert("El producto no puede ser cargado dado a que ya existe uno con el mismo nombre");
+            return;
+        }else{
+            repetido = false;
+        }
+    }
 
+    if(repetido != true){
+        productosarray.push(new productos(id, nombre, categoria, descripcion, precio));
+        ClearFormProductos();
+    }
+
+    }    
     //Storage
     SaveItems("productos", JSON.stringify(productosarray));
     }else{
@@ -257,6 +296,5 @@ if(productosarray.length == 0 ){
     
 }
 
-/*
-foto.substring(foto.length, foto.lastIndexOf("\\"))
-*/
+//todavia la foto no funciona
+//foto.substring(foto.length, foto.lastIndexOf("\\"))

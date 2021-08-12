@@ -10,7 +10,10 @@
     <link rel="shortcut icon" href="./media/icon.ico" type="image/x-icon">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
-<body onload=MuestreoProds();>
+<script>
+  let todo = "todo";
+</script>
+<body onload=MuestreoProds(todo);MuestreoCategorias();>
     <div class="Brand">
         <h1>DevBar</h1>
     </div>
@@ -19,8 +22,13 @@
     </div>
     
     
-    <nav>
-        <!-- Futuro navegador de categorias -->
+    <nav style="padding-bottom: 10px;">
+      <ul class="nav nav-tabs" id="categorias">
+        <!-- Muestreo de Categorias -->
+        <li class="nav-item">
+          <a class="nav-link anchorsNav" aria-current="page" id="todo" onclick="MuestreoProds('todo');">Todo</a>
+          </li>
+      </ul>
     </nav>
     
 <section id="productos" class="Productos">

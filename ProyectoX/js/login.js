@@ -3,7 +3,7 @@ const usuario = "admin";
 const pass = "admin";
 
 function Login(user, password){
-    if(user == usuario && password == pass)
+    if(user === usuario && password === pass)
     {   
         localStorage.setItem('usersession', true)
         window.location.href = "consola.html";

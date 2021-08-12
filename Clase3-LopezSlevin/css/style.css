@@ -4,7 +4,9 @@
 html, body{
     background-color: rgba(88, 29, 29, 0);
     z-index: 0;
+    
 }
+
 
 .main{
 display: flex;

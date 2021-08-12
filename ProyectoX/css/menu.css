@@ -5,6 +5,11 @@ body{
     background-image: url("../media/paper.png");
 }
 
+.anchorsNav{
+color:black;
+font-size: 0.8em;
+}
+
 .Brand{
     font-family: 'Ubuntu Mono', monospace;
     font-weight: 1000;
