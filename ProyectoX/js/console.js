@@ -1,12 +1,12 @@
 //constructor del producto
 class productos{
-    constructor(id, nombre, categoria, descripcion, precio, foto){
+    constructor(id, nombre, categoria, descripcion, precio){
         this.id = id;
         this.nombre = nombre.toUpperCase();
         this.categoria = categoria;
         this.descripcion = descripcion;
         this.precio = precio;
-        this.foto = foto
+        //this.foto = foto
     }
 }
 //constructor de globales
@@ -139,7 +139,7 @@ function UploadProducto(nombre, categoria, descripcion, precio){
     }
     
     if(id == 0){
-        productosarray.push(new productos(id, nombre, categoria, descripcion, foto));
+        productosarray.push(new productos(id, nombre, categoria, descripcion));
         ClearFormProductos();
     }else{
         let repetido = true;

@@ -2,6 +2,13 @@
 let productosarray = [];
 let categoriasarray = [];
 
+function OnLoad(){
+  let todo = "todo";
+  MuestreoProds(todo);
+  MuestreoCategorias();
+  MuestreoCart();
+}
+
 function GetItems(clave){
     return localStorage.getItem(clave);
 }
@@ -22,10 +29,10 @@ for (let index = 0; index < productosarray.length; index++) {
       <p class="card-text"> ${productosarray[index].descripcion} </p>
       <p class="card-text"> $ ${productosarray[index].precio} </p>
       <div class="form-group mx-sm-4 mb-2">
-      <input type="Number" class="form-control" id="cantidad" placeholder="Cantidad">
+      <input type="Number" class="form-control" id="cantidad" value="1" placeholder="Cantidad">
       </div>
       <input type="hidden" id="idprod" value=" ${productosarray[index].id} ">
-      <button type="button" class="btn btn-primary" style="margin-left:3rem;">Ordenar</button>
+      <button type="button" class="btn btn-primary" style="margin-left:3rem;" onclick="addToCart( ${productosarray[index].nombre}, ${productosarray[index].precio}, document.getElementbyId('cantidad').value);">Ordenar</button>
    </div>
   </div>`;
   $("#contenedor").append(content)
@@ -42,7 +49,7 @@ for (let index = 0; index < productosarray.length; index++) {
       <input type="Number" class="form-control" id="cantidad" placeholder="Cantidad">
       </div>
       <input type="hidden" id="idprod" value=" ${productosarray[index].id} ">
-      <button type="button" class="btn btn-primary" style="margin-left:3rem;">Ordenar</button>
+      <button type="button" class="btn btn-primary" style="margin-left:3rem;" onclick="addToCart(${productosarray[index].nombre}, ${productosarray[index].precio}, document.getElementbyId('cantidad').value);">Ordenar</button>
    </div>
   </div>`;
   $("#contenedor").append(content)
@@ -62,4 +69,15 @@ function MuestreoCategorias(){
   $("#categorias").append(content);
   }
   
+}
+
+
+function addToCart(Nombre, Precio, Cantidad){
+console.log(Nombre);
+console.log(Precio);
+console.log(Cantidad);
+}
+
+function MuestreoCart(){
+
 }

@@ -34,3 +34,10 @@ font-size: 0.8em;
 .detail{
 font-size: 0.5em;
 }
+
+.cart{
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 1em;
+    align-items: flex-end;
+}
