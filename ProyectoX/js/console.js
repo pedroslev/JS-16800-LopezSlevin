@@ -15,6 +15,13 @@ let productosarray = [];
 let categoriasarray = [];
 let usersession;
 
+//OnLoad
+function OnLoad(){
+    LoginCheck();
+    Obtencion();
+    DarkMode(document.getElementById('darkmode').checked);
+}
+
 
 //Obtiene todos los valores por mas que cierre y vuelva a abrir el navegador por error o recargue para el muestreo en consola
 function Obtencion(){
@@ -139,7 +146,7 @@ function UploadProducto(nombre, categoria, descripcion, precio){
     }
     
     if(id == 0){
-        productosarray.push(new productos(id, nombre, categoria, descripcion));
+        productosarray.push(new productos(id, nombre, categoria, descripcion, precio));
         ClearFormProductos();
     }else{
         let repetido = true;
@@ -265,7 +272,7 @@ function LoginCheck(){
 
 
 //testeo de importacion de array de objetos en almacenamiento de productos
-function ExportJSON(){
+function ExportJSONProductos(){
 
 if(productosarray.length == 0 ){
     alert("Aun no hay productos existentes que se puedan exportar");
@@ -291,10 +298,88 @@ if(productosarray.length == 0 ){
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
+        }
+    }  
+}
+
+function ExportJSONCategorias(){
+
+    if(categoriasarray.length == 0 ){
+        alert("Aun no hay productos existentes que se puedan exportar");
+    }else{
+        //conversion de productos a JSON en otra variable
+        let json = JSON.stringify(categoriasarray);
+    
+        //conversion JSON string a BLOB ->  fichero de  datos planos inmutables.
+        json = [json];
+        let blob1 = new Blob(json, { type: "text/plain;charset=utf-8" });
+    
+        //muchisima ayuda de stackoverflow por aca
+        //Check the Browser.
+        let isIE = false || !!document.documentMode;
+        if (isIE) {
+            window.navigator.msSaveBlob(blob1, "categorias.json");
+        } else {
+            let url = window.URL || window.webkitURL;
+            link = url.createObjectURL(blob1);
+            let a = document.createElement("a");
+            a.download = "categorias.json";
+            a.href = link;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            }
+        }  
+    }
+
+
+
+
+
+
+
+//DARKMODE
+function DarkMode(checked){
+    if(checked){
+        $("body").css("background-color", "#000000");
+        $("#particles-js").css("background-color", "#000000")
+    }else{
+
+        $("body").css("background-color", "#ffffff");
+        $("#particles-js").css("background-color", "#ffffff")
     }
 }
-    
+
+
+//BETA TESTING
+function LoadJSONProductos(){
+    let array = [];
+    let productos = './data/productos.json';
+    let responses = $.getJSON(productos, function(response) {
+        for (let index = 0; index < response.length; index++) {
+            console.log(response[index]); 
+            array[index] = response[index];
+        }
+        return array;
+});
+console.log(array);
+SaveItems("productos", array);
 }
+
+function LoadJSONCategorias(){
+    let array = [];
+    let categorias = './data/categorias.json';
+    $.getJSON(categorias, function(response) {
+        for (let index = 0; index < response.length; index++) {
+            console.log(response[index]); 
+            array[index] = response[index];
+        }
+        return array;
+});
+console.log(array);
+SaveItems("categorias", array);
+}
+
 
 //todavia la foto no funciona
 //foto.substring(foto.length, foto.lastIndexOf("\\"))

@@ -9,21 +9,25 @@
     <link rel="stylesheet" href="./css/console.css">
     <link rel="stylesheet" href="./css/particles.css">
     <link rel="shortcut icon" href="./media/icon.ico" type="image/x-icon">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="./js/console.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    
 </head>
 
-<body onload="LoginCheck();Obtencion();">
-    <div id="particles-js"></div>
-    <div class="Brand">
-        <h1>DevBar - Console</h1>
+<body onload="OnLoad();">
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="Nav">
+      <div class="Brand">
+        <h4>DevBar - Console</h4>
+      </div>
+        <div class="form-check form-switch Mode">
+          <input class="form-check-input" type="checkbox" onchange="DarkMode(document.getElementById('darkmode').checked);" id="darkmode">
+          <img src="./media/dark.svg" alt="dark mode" style="padding-left:1em">
+      </div>
+      
     </div>
-
-    <div class="formgrid" style="margin: 0px 3em 3em 3em;">
+    
+    
+  </nav>
+    <div id="particles-js"></div>
+    <div class="formgrid" style="margin: 10px 3em 3em 3em; ">
         <!-- Formulario de carga de productos -->
         <h2 style="text-decoration: underline;">Productos</h2>
         <div class="Productos">
@@ -54,7 +58,7 @@
                   </div>
                   <div class="upload">
                     <button type="button" class="btn btn-success" onclick="UploadProducto(document.getElementById('nombre').value, document.getElementById('categoria').value, document.getElementById('descripcion').value, document.getElementById('precio').value);">Cargar</button>
-                    <button type="button" style="margin-left: 1em;" class="btn btn-dark" onclick="ExportJSON();">Exportar</button>
+                    <button type="button" style="margin-left: 1em;" class="btn btn-dark" onclick="ExportJSONProductos();">Exportar</button>
                   </div>
               </form>
               <hr>
@@ -104,6 +108,7 @@
           </div>
             <div class="upload">
               <button type="button" class="btn btn-success" onclick="UploadCategorias(document.getElementById('nombrecategoria').value);">Cargar</button>
+              <button type="button" style="margin-left: 1em;" class="btn btn-dark" onclick="ExportJSONCategorias();">Exportar</button>
             </div>
         </form>
 <hr>
@@ -124,6 +129,11 @@
 
     
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>    
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="./js/console.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </body>
 <script src="./js/particles.js"></script>
 </html>

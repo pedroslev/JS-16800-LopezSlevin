@@ -7,6 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<link href="css/login.css" rel="stylesheet">
   <link rel="stylesheet" href="./css/particles.css">
 	<link rel="icon" type="image/x-icon" href="media/icon.ico"/>
@@ -16,7 +17,7 @@
 
     <script src="./js/login.js"></script>
     <div id="particles-js"></div>
-    <form class="form-signin">
+    <form class="form-signin" id="form">
       <img class="mb-4" src="media/icon.png" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">DevBar Login</h1>
       <label for="inputEmail" class="sr-only">Usuario</label>
@@ -30,6 +31,9 @@
       <p class="mt-1 mb-3 text-muted"> Versión 0.0.1</p>
     </form>
 
+    <div id="load" style="display: none;">
+      <img src="./media/icon.png" alt="">
+    </div>
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>    
   </body>
   <script src="./js/particles.js"></script>

@@ -5,8 +5,14 @@ const pass = "admin";
 function Login(user, password){
     if(user === usuario && password === pass)
     {   
+        $("#form").slideUp("slow", function(){
+            $("#load").fadeIn("slow");
+    });
+        
+        
         localStorage.setItem('usersession', true)
-        window.location.href = "consola.html";
+        setTimeout(function(){window.location.href = "consola.html";}, 1500);
+        
 
     }else{
         

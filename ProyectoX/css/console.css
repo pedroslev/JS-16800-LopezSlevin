@@ -2,8 +2,9 @@
     font-family: 'Ubuntu Mono', monospace;
     font-weight: 1000;
     display: flex;
-    justify-content: center;
-    padding-top: 2em;
+    padding-left: 1em;
+    justify-content: flex-start;
+    color: white;
 }
 
 .formgrid{
@@ -17,6 +18,22 @@
     color: black;
     font-family: 'Ubuntu Mono', monospace;
     font-size: 1.5em;
+}
+
+.Nav{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 100%;
+    flex-direction: row;
+    width: 100%;
+    
+}
+
+.Mode{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 1em;
 }
 
 .upload{
