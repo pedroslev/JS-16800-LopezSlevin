@@ -7,7 +7,8 @@ body{
 
 .anchorsNav{
 color:black;
-font-size: 0.8em;
+font-size: 1.2em;
+font-weight: 500;
 }
 
 .Brand{
@@ -36,8 +37,11 @@ font-size: 0.5em;
 }
 
 .cart{
-    display: flex;
-    justify-content: flex-end;
     padding-right: 1em;
-    align-items: flex-end;
+    margin-bottom: 1em;
+    float: right;
+}
+.sticky{
+    position: sticky;
+    bottom: 1em;
 }
