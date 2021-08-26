@@ -32,7 +32,7 @@ for (let index = 0; index < productosarray.length; index++) {
 
   if (categoria == "todo") {
     let content = `<div class="card shadow-lg p-3 mb-5 bg-white" style="width: 15rem;margin-left: 5rem;margin-bottom:0.5rem;border-radius: 1.5em;">
-    <img class="card-img-top" style="border-radius: 1em;" src="./media/hamburguesa.jpg" alt="Card image cap">
+    <img class="card-img-top" style="border-radius: 1em;" src="${productosarray[index].foto}" alt="Card image cap">
     <div class="card-body">
       <h6 class="card-title"> ${productosarray[index].nombre} </h6>
       <p class="card-text"> ${productosarray[index].descripcion} </p>

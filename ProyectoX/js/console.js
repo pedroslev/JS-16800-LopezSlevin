@@ -1,12 +1,12 @@
 //constructor del producto
 class productos{
-    constructor(id, nombre, categoria, descripcion, precio){
+    constructor(id, nombre, categoria, descripcion, precio, foto){
         this.id = id;
         this.nombre = nombre.toUpperCase();
         this.categoria = categoria;
         this.descripcion = descripcion;
         this.precio = precio;
-        //this.foto = foto
+        this.foto = foto;
     }
 }
 //constructor de globales
@@ -134,8 +134,8 @@ function MuestreoProductos(){
     }
 
 //Subida de producto -> faltan imagenes dinamicas en prox entrega si messi quiere
-function UploadProducto(nombre, categoria, descripcion, precio){
-
+function UploadProducto(nombre, categoria, descripcion, precio, foto){
+    console.log(foto);
     //check values for null input
     if(CheckProductForm()){
 
@@ -146,7 +146,7 @@ function UploadProducto(nombre, categoria, descripcion, precio){
     }
     
     if(id == 0){
-        productosarray.push(new productos(id, nombre, categoria, descripcion, precio));
+        productosarray.push(new productos(id, nombre, categoria, descripcion, precio, foto));
         ClearFormProductos();
     }else{
         let repetido = true;
@@ -161,7 +161,7 @@ function UploadProducto(nombre, categoria, descripcion, precio){
     }
 
     if(repetido != true){
-        productosarray.push(new productos(id, nombre, categoria, descripcion, precio));
+        productosarray.push(new productos(id, nombre, categoria, descripcion, precio, foto));
         ClearFormProductos();
     }
 
@@ -178,11 +178,9 @@ MuestreoProductos();
 
 //Checkeo de ingreso de todos los valores de form de carga
 function CheckProductForm(){
-    if(document.getElementById('nombre').value == '' || document.getElementById('descripcion').value == '' || document.getElementById('precio').value == '' || document.getElementById('categoria').value == "Aun no hay categorias" || document.getElementById('categoria').value == "")
+    if(document.getElementById('nombre').value == '' || document.getElementById('descripcion').value == '' || document.getElementById('precio').value == '' || document.getElementById('categoria').value == "Aun no hay categorias" || document.getElementById('categoria').value == "" || document.getElementById('foto').value == "")
     {
-        document.getElementById('nombre').value = '';
-        document.getElementById('descripcion').value = '';
-        document.getElementById('precio').value = '';
+        ClearFormProductos();
         return false;
     }else{
         return true;
@@ -194,6 +192,7 @@ function ClearFormProductos(){
     document.getElementById('nombre').value = '';
         document.getElementById('descripcion').value = '';
         document.getElementById('precio').value = '';
+        document.getElementById('foto').value = '';
 }
 
 //Subida de categorias -> form categorias upload
@@ -334,10 +333,6 @@ function ExportJSONCategorias(){
 
 
 
-
-
-
-
 //DARKMODE
 function DarkMode(checked){
     if(checked){
@@ -377,7 +372,7 @@ function LoadJSONCategorias(){
         return array;
 });
 console.log(array);
-SaveItems("categorias", array);
+SaveItems("categorias", JSON.stringify(array));
 }
 
 
