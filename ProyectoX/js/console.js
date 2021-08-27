@@ -128,7 +128,18 @@ function MuestreoProductos(){
               $("#tablaproductos").append(content);    
                     }
                 }else{
+                    $("#tablaproductos").empty();
+                    let content = `<td>Aun</td>
+                    <td>No</td>
+                    <td>Hay</td>
+                    <td>Productos</td>
+                    <td>Cargados</td>`;
+                    $("#tablaproductos").append(content);
+
+                    
                     $("#productoaeliminar").empty();
+                    let content2 = `<option value="" id="SinProductos">Aun no hay Productos</option>`;
+                    $("#productoaeliminar").append(content2);
             }
         }
     }
