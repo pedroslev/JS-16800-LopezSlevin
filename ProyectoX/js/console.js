@@ -25,7 +25,7 @@ function OnLoad(){
 
 //Obtiene todos los valores por mas que cierre y vuelva a abrir el navegador por error o recargue para el muestreo en consola
 function Obtencion(){
-    if(JSON.parse(GetItems("productos")) != null || JSON.parse(GetItems("categorias")) != null){
+    if(JSON.parse(GetItems("productos")) != "" || JSON.parse(GetItems("categorias")) != ""){
     productosarray = JSON.parse(GetItems("productos"));
     categoriasarray = JSON.parse(GetItems("categorias"));
     MuestreoCategorias();
@@ -116,19 +116,19 @@ function MuestreoProductos(){
 
         //eliminar todo lo anterior
         if (productosarray != 0) {
-            $("#tablaproductos").empty();      
-        }
-        
-
-    for (let index = 0; index < productosarray.length; index++) {
-        let content = `<tr>
-        <td> ${productosarray[index].id}</td>
-        <td> ${productosarray[index].nombre} </td>
-        <td> ${productosarray[index].categoria} </td>
-        <td> ${productosarray[index].descripcion} </td>
-        <td> $${productosarray[index].precio} </td>
-        </tr>`;
-      $("#tablaproductos").append(content);    
+            $("#tablaproductos").empty();
+            for (let index = 0; index < productosarray.length; index++) {
+                let content = `<tr>
+                <td> ${productosarray[index].id}</td>
+                <td> ${productosarray[index].nombre} </td>
+                <td> ${productosarray[index].categoria} </td>
+                <td> ${productosarray[index].descripcion} </td>
+                <td> $${productosarray[index].precio} </td>
+                </tr>`;
+              $("#tablaproductos").append(content);    
+                    }
+                }else{
+                    $("#productoaeliminar").empty();
             }
         }
     }
@@ -355,10 +355,10 @@ function LoadJSONProductos(){
             console.log(response[index]); 
             array[index] = response[index];
         }
-        return array;
-});
-console.log(array);
-SaveItems("productos", array);
+        SaveItems("productos", JSON.stringify(array));
+        productosarray = JSON.parse(GetItems("productos"));
+        MuestreoProductos();
+    });
 }
 
 function LoadJSONCategorias(){
@@ -369,12 +369,27 @@ function LoadJSONCategorias(){
             console.log(response[index]); 
             array[index] = response[index];
         }
-        return array;
-});
-console.log(array);
-SaveItems("categorias", JSON.stringify(array));
+        SaveItems("categorias", JSON.stringify(array));
+        categoriasarray = JSON.parse(GetItems("categorias"));
+        MuestreoCategorias();
+    });
 }
 
+//Testing
+function LoadJSON(){
+    LoadJSONCategorias();
+    LoadJSONProductos();
+}
 
-//todavia la foto no funciona
-//foto.substring(foto.length, foto.lastIndexOf("\\"))
+function EraseExistence(){
+    productosarray = [];
+    categoriasarray = [];
+    orden = []
+    total = 0
+    SaveItems("productos", JSON.stringify(productosarray));
+    SaveItems("categorias", JSON.stringify(categoriasarray));
+    SaveItems("total", total);
+    SaveItems("orden", JSON.stringify(orden));
+    MuestreoCategorias();
+    MuestreoProductos();
+}

@@ -24,6 +24,24 @@ function GetItems(clave){
     return localStorage.getItem(clave);
 }
 
+//Guardado en localstorage de valores generico
+function SaveItems(clave, valor){
+  localStorage.setItem(clave, valor);
+}
+
+function MuestreoCategorias(){
+  categoriasarray = JSON.parse(GetItems("categorias"));
+  categoriasarray.sort();
+  for (let index = 0; index < categoriasarray.length; index++) {
+  let content = `<li class="nav-item">
+  <a class="nav-link anchorsNav" aria-current="page" id="${categoriasarray[index]}" onclick="MuestreoProds('${categoriasarray[index]}')"> ${categoriasarray[index]}</a>
+  </li>`;
+  $("#categorias").append(content);
+  }
+  
+}
+
+
 function MuestreoProds(categoria){
     productosarray = JSON.parse(GetItems("productos"));
     categoriasarray = JSON.parse(GetItems("categorias"));
@@ -45,8 +63,7 @@ for (let index = 0; index < productosarray.length; index++) {
       <input type="hidden" id="idprod" value="${productosarray[index].id}">
       <button type="button" class="btn btn-primary" style="margin-left:3rem;" id="ordenarbtn${productosarray[index].id}" onclick="addToCart('${productosarray[index].nombre}', '${productosarray[index].precio}', '${productosarray[index].id}');">Ordenar</button>
    </div>
-  </div>`;
-  
+  </div>`;  
 
   $("#contenedor").append(content);
   }
@@ -62,7 +79,7 @@ for (let index = 0; index < productosarray.length; index++) {
       <input type="Number" class="form-control" value="1" id="cantidad${productosarray[index].id}" placeholder="Cantidad">
       </div>
       <input type="hidden" id="idprod" value="${productosarray[index].id}">
-      <button type="button" class="btn btn-primary" style="margin-left:3rem;" id="ordenarbtn${productosarray[index].id}" onclick="addToCart( ${productosarray[index].nombre}, ${productosarray[index].precio}, document.getElementbyId('cantidad${productosarray[index].id}').value);">Ordenar</button>
+      <button type="button" class="btn btn-primary" style="margin-left:3rem;" id="ordenarbtn${productosarray[index].id}" onclick="addToCart( ${productosarray[index].nombre}, ${productosarray[index].precio}, '${productosarray[index].id}');">Ordenar</button>
    </div>
   </div>`;
   $("#contenedor").append(content)
@@ -72,36 +89,18 @@ for (let index = 0; index < productosarray.length; index++) {
   }
 }
 
-//Guardado en localstorage de valores generico
-function SaveItems(clave, valor){
-  localStorage.setItem(clave, valor);
-}
-
-function MuestreoCategorias(){
-  categoriasarray = JSON.parse(GetItems("categorias"));
-  categoriasarray.sort();
-  for (let index = 0; index < categoriasarray.length; index++) {
-  let content = `<li class="nav-item">
-  <a class="nav-link anchorsNav" aria-current="page" id="${categoriasarray[index]}" onclick="MuestreoProds('${categoriasarray[index]}')"> ${categoriasarray[index]}</a>
-  </li>`;
-  $("#categorias").append(content);
-  }
-  
-}
-
-
 function addToCart(Nombre, Precio, Id){
 let Cantidad = document.getElementById('cantidad'+ Id).value
-document.getElementById('ordenarbtn'+Id).innerHTML = "Agregar";
-let id = 0;
-if(ordenarray == null){id = 0;}else{id = ordenarray.length};
+let id;
+if(ordenarray == ""){id = 0;}else{id = ordenarray.length};
 ordenarray.push(new orden(id, Nombre, Cantidad, Precio));
-totalprice = totalprice + Cantidad * Precio;
+totalprice = totalprice + (Cantidad * Precio);
 
 SaveItems("total", totalprice);
 SaveItems("orden", JSON.stringify(ordenarray));
+document.getElementById('ordenarbtn'+Id).disabled = true;
 
-  let cart = `<tr>
+  let cart = `<tr id="orden${id}">
   <th scope="row">${id}</th>
   <td>${Nombre}</td>
   <td>${Cantidad}</td>
@@ -121,10 +120,11 @@ SaveItems("orden", JSON.stringify(ordenarray));
 
 function MuestreoCart(){
 let total = JSON.parse(GetItems("total"));
-ordenarray = JSON.parse(GetItems("orden"));
+if(JSON.parse(GetItems("orden")) == ""){ordenarray = []}else{
+  ordenarray = JSON.parse(GetItems("orden"));
+}
 
 for (let index = 0; index < ordenarray.length; index++) {
-  console.log(orden[index]);
   let cart = `<tr>
   <th scope="row">${ordenarray[index].id}</th>
   <td>${ordenarray[index].nombre}</td>
@@ -146,8 +146,8 @@ $("#totalprice").empty();
 function EmptyCart(){
   totalprice = 0;
   let cart = [];
-  for (let index = 0; index < ordenarray.length; index++) {
-    document.getElementById('ordenarbtn'+ordenarray[index].id).innerHTML = "Ordenar"; 
+  for (let index = 0; index < productosarray.length; index++) {
+    document.getElementById('ordenarbtn'+ productosarray[index].id).disabled = false;
   }
   SaveItems("total", totalprice);
   SaveItems("orden", JSON.stringify(cart));
@@ -158,8 +158,8 @@ function EmptyCart(){
 
 function DeleteCartItem(id){
   for (let index = 0; index < productosarray.length; index++) {
-  if(ordenarray[id].nombre == productosarray[index].nombre){
-    document.getElementById('ordenarbtn'+index).innerHTML = "Ordenar";
+    if(ordenarray[id].nombre == productosarray[index].nombre){
+      document.getElementById('ordenarbtn'+ productosarray[index].id).disabled = false;
     }
   }
   
@@ -167,8 +167,7 @@ function DeleteCartItem(id){
   let i = 0;
   for (let index = 0; index < ordenarray.length; index++) {
   if(ordenarray[index].id != id){
-    cartnuevo.push(ordenarray[i]);
-    i = i + 1;
+    cartnuevo.push(ordenarray[index]);
     }
   }
   console.log(cartnuevo);
