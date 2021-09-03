@@ -89,58 +89,52 @@ for (let index = 0; index < productosarray.length; index++) {
   }
 }
 
-function addToCart(Nombre, Precio, Id){
-let Cantidad = document.getElementById('cantidad'+ Id).value
+function addToCart(Nombre, Precio, IdProducto){
+document.getElementById('pagar').disabled = false;
+let Cantidad = document.getElementById('cantidad'+ IdProducto).value
 let id;
+let preciototal = JSON.parse(GetItems("total"));
 if(ordenarray == ""){id = 0;}else{id = ordenarray.length};
 ordenarray.push(new orden(id, Nombre, Cantidad, Precio));
 totalprice = totalprice + (Cantidad * Precio);
 
 SaveItems("total", totalprice);
 SaveItems("orden", JSON.stringify(ordenarray));
-document.getElementById('ordenarbtn'+Id).disabled = true;
+document.getElementById('ordenarbtn'+IdProducto).disabled = true;
 
   let cart = `<tr id="orden${id}">
   <th scope="row">${id}</th>
   <td>${Nombre}</td>
-  <td>${Cantidad}</td>
+  <td>${Cantidad}  x</td>
   <td>$${Precio}</td>
-  <td><button class="btn btn-outline-secondary" id="delete${id}" onclick="DeleteCartItem(${id});"><img style="width: 1em;" src="./media/trash.svg"></img></button></td>
+  <td><button class="btn btn-outline-secondary" id="delete${id}" onclick="DeleteCartItem('${Nombre}')"><img style="width: 1em;" src="./media/trash.svg"></img></button></td>
   </tr>`;
   $("#order").prepend(cart);
 
-  $("#totalprice").empty();
-  let total = `<th scope="row"></th>
-  <td></td>
-  <td style="font-weight: 700">Total:</td>
-  <td style="font-weight: 700">$${totalprice}</td>`;
-  $("#totalprice").append(total);
+  $("#totalprice").html("$" + totalprice);
+ 
 }
 
 
 function MuestreoCart(){
 let total = JSON.parse(GetItems("total"));
-if(JSON.parse(GetItems("orden")) == ""){ordenarray = []}else{
+if(total == null){total = 0};
+if(JSON.parse(GetItems("orden")) == null){ordenarray = []}else{
   ordenarray = JSON.parse(GetItems("orden"));
 }
 
 for (let index = 0; index < ordenarray.length; index++) {
-  let cart = `<tr>
+  let cart = `<tr id="orden${ordenarray[index].id}">
   <th scope="row">${ordenarray[index].id}</th>
   <td>${ordenarray[index].nombre}</td>
-  <td>${ordenarray[index].cantidad}</td>
+  <td>${ordenarray[index].cantidad}  x</td>
   <td>$${ordenarray[index].precio}</td>
-  <td><button class="btn btn-outline-secondary" id="delete${ordenarray[index].id}" onclick="DeleteCartItem(${ordenarray[index].id});"><img style="width: 1em;" src="./media/trash.svg"></img></button></td>
+  <td><button class="btn btn-outline-secondary" id="delete${ordenarray[index].id}" onclick="DeleteCartItem('${ordenarray[index].nombre}')"><img style="width: 1em;" src="./media/trash.svg"></img></button></td>
   </tr>`;
   $("#order").prepend(cart);
 }
 
-$("#totalprice").empty();
-  let totalcontent = `<th scope="row"></th>
-  <td></td>
-  <td style="font-weight: 700">Total:</td>
-  <td style="font-weight: 700">$${total}</td>`;
-  $("#totalprice").append(totalcontent);
+$("#totalprice").html("$" + total);
 }
 
 function EmptyCart(){
@@ -153,38 +147,68 @@ function EmptyCart(){
   SaveItems("orden", JSON.stringify(cart));
   ordenarray= [];
   $("#order").empty();
-  $("#totalprice").empty();
+  document.getElementById('pagar').disabled = false;
+  $("#totalprice").html("$" + totalprice);
 }
 
-function DeleteCartItem(id){
+function DeleteCartItem(nombre){
+  //Enable Order Button
   for (let index = 0; index < productosarray.length; index++) {
-    if(ordenarray[id].nombre == productosarray[index].nombre){
+    if(nombre == productosarray[index].nombre){
+
       document.getElementById('ordenarbtn'+ productosarray[index].id).disabled = false;
     }
   }
-  
-  let cartnuevo = [];
-  let i = 0;
-  for (let index = 0; index < ordenarray.length; index++) {
-  if(ordenarray[index].id != id){
-    cartnuevo.push(ordenarray[index]);
+
+  //obtaining real id
+  let id;
+  for (let index = 0; index < ordenarray.length; index++) {    
+    if(ordenarray[index].nombre == nombre){
+      id = index;
     }
   }
-  console.log(cartnuevo);
-  console.log("precio de producto ind: "+ordenarray[id].precio);
-  console.log("cantidad de prod:"+ordenarray[id].cantidad);
-  let precioless = ordenarray[id].precio * ordenarray[id].cantidad;
-  console.log("precioless es:"+precioless);
-  let total = JSON.parse(GetItems("total"));
-  console.log("precio total de memoria:"+total);
-  totalprice = totalprice - precioless;
-  console.log("totalprice es :"+totalprice);
-  SaveItems("total", totalprice);
+  
+  //Eliminacion del objeto
+  let cartnuevo = [];
+  let i = 0;
+  if(ordenarray.length != 1){
+    for (let index = 0; index < ordenarray.length; index++) {
+      if(ordenarray[index].id != ordenarray[id].id){
+        cartnuevo.push(ordenarray[index]);
+        console.log(ordenarray[index]);
+        }
+      }
+      let precioless = ordenarray[id].precio * ordenarray[id].cantidad;
+      totalprice = totalprice - precioless;
+      SaveItems("total", totalprice);
+    
+      console.log(cartnuevo);
+      ordenarray = cartnuevo;
+      SaveItems("orden", JSON.stringify(ordenarray));
+      $("#order").empty();
+      //$("#totalprice").empty();
+      MuestreoCart();
+  }else{
+    document.getElementById('pagar').disabled = false;
+    totalprice = 0;
+    SaveItems("total", totalprice);
 
-  ordenarray = cartnuevo;
-  SaveItems("orden", JSON.stringify(ordenarray));
-  $("#order").empty();
-  $("#totalprice").empty();
-  MuestreoCart();
+    ordenarray = cartnuevo;
+    SaveItems("orden", JSON.stringify(ordenarray));
+    $("#order").empty();
+    $("#totalprice").html("$" + totalprice);
+    MuestreoCart();
+  }
+  
+
+  
 }
 
+function Limpieza(){
+  localStorage.clear();
+  window.location.reload();
+}
+
+function CheckOut(){
+  window.location.href = "checkout.html";
+}

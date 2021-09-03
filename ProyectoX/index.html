@@ -70,16 +70,36 @@
             </thead>
             <tbody id="order">
               
-              <tr id="totalprice">
-                
+            
+            </tbody>
+          </table>
+
+
+          <table class="table table-sm">
+            <thead>
+            </thead>
+            <tbody id="precio">
+              
+              <tr>
+              <th scope="row"></th>
+              <td></td>
+              <td style="font-weight: 700">Total:</td>
+              <td style="font-weight: 700" id="totalprice"></td>
               </tr>
             </tbody>
           </table>
+
+
+
+
+
+
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" onclick="EmptyCart();">Vaciar</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary">Ir a pagar</button>
+          <button type="button" class="btn btn-primary" id="pagar" onclick="CheckOut()" disabled>Ir a pagar</button>
         </div>
       </div>
     </div>

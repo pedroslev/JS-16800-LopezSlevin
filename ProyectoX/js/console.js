@@ -14,12 +14,19 @@ let id;
 let productosarray = [];
 let categoriasarray = [];
 let usersession;
+let properties;
 
 //OnLoad
 function OnLoad(){
     LoginCheck();
     Obtencion();
     DarkMode(document.getElementById('darkmode').checked);
+    /*LoadJSONProperties();
+    console.log(properties)
+    for (let index = 0; index < properties.length; index++) {
+        if(properties[index].LoadFromJSON){LoadJSON();}
+        if(properties[index].BarName != null){JSON.stringify(SaveItems("BarName"), properties[index].BarName)}    
+    }*/
 }
 
 
@@ -356,8 +363,22 @@ function DarkMode(checked){
     }
 }
 
+function LoadJSONProperties(){
+    let array = [];
+    let propertiesjson = './data/properties.json';
+    let responses = $.getJSON(propertiesjson, function(response) {
+        for (let index = 0; index < response.length; index++) {
+            console.log(response[index]); 
+            array[index] = response[index];
+        }
+        SaveItems("properties", JSON.stringify(array));
+        properties = JSON.parse(GetItems("properties"));
+        console.log(properties);
+    });
+}
 
-//BETA TESTING
+
+
 function LoadJSONProductos(){
     let array = [];
     let productos = './data/productos.json';
