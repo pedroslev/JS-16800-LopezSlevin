@@ -14,10 +14,14 @@ class orden{
 
 function OnLoad(){
   let todo = "todo";
-  MuestreoProds(todo);
-  MuestreoCategorias();
-  MuestreoCart();
-  //MuestreoCart();
+  LoadJSONProperties();
+  ValidateProperties();
+  //async  
+  setTimeout(function(){
+    MuestreoProds(todo);
+    MuestreoCategorias();
+    MuestreoCart();}, 2000);
+    
 }
 
 function GetItems(clave){
@@ -175,14 +179,11 @@ function DeleteCartItem(nombre){
     for (let index = 0; index < ordenarray.length; index++) {
       if(ordenarray[index].id != ordenarray[id].id){
         cartnuevo.push(ordenarray[index]);
-        console.log(ordenarray[index]);
         }
       }
       let precioless = ordenarray[id].precio * ordenarray[id].cantidad;
       totalprice = totalprice - precioless;
       SaveItems("total", totalprice);
-    
-      console.log(cartnuevo);
       ordenarray = cartnuevo;
       SaveItems("orden", JSON.stringify(ordenarray));
       $("#order").empty();
@@ -211,4 +212,60 @@ function Limpieza(){
 
 function CheckOut(){
   window.location.href = "checkout.html";
+}
+
+function LoadJSONProperties(){
+  let array = [];
+  let propertiesjson = './data/properties.json';
+  let responses = $.getJSON(propertiesjson, function(response) {
+      for (let index = 0; index < response.length; index++) {
+          array[index] = response[index];
+      }
+      SaveItems("properties", JSON.stringify(array));
+      properties = JSON.parse(GetItems("properties"));
+  });
+}
+
+
+
+function LoadJSONProductos(){
+  let array = [];
+  let productos = './data/productos.json';
+  let responses = $.getJSON(productos, function(response) {
+      for (let index = 0; index < response.length; index++) { 
+          array[index] = response[index];
+      }
+      SaveItems("productos", JSON.stringify(array));
+      productosarray = JSON.parse(GetItems("productos"));
+      
+  });
+}
+
+function LoadJSONCategorias(){
+  let array = [];
+  let categorias = './data/categorias.json';
+  $.getJSON(categorias, function(response) {
+      for (let index = 0; index < response.length; index++) {
+          array[index] = response[index];
+      }
+      SaveItems("categorias", JSON.stringify(array));
+      categoriasarray = JSON.parse(GetItems("categorias"));
+  });
+}
+
+//Testing
+function LoadJSON(){
+  LoadJSONCategorias();
+  LoadJSONProductos();
+}
+
+function ValidateProperties(){
+  setTimeout(function(){
+    if(properties[0].BarName != null){SaveItems("BarName", JSON.stringify(properties[0].BarName))}else{SaveItems("BarName", JSON.stringify("DevBar"))}
+    if(properties[0].Slogan != null){SaveItems("Slogan", JSON.stringify(properties[0].Slogan))}else{SaveItems("Slogan", JSON.stringify("A bar made for developers by developers"))}
+    $("#brand").text(JSON.parse(GetItems("BarName")));
+    $("#slogan").text(properties[0].Slogan);
+    for (let index = 0; index < properties.length; index++) {
+        if(properties[index].LoadFromJSON){LoadJSON();}}}, 1000)
+        
 }

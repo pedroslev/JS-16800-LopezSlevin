@@ -21,12 +21,9 @@ function OnLoad(){
     LoginCheck();
     Obtencion();
     DarkMode(document.getElementById('darkmode').checked);
-    /*LoadJSONProperties();
-    console.log(properties)
-    for (let index = 0; index < properties.length; index++) {
-        if(properties[index].LoadFromJSON){LoadJSON();}
-        if(properties[index].BarName != null){JSON.stringify(SaveItems("BarName"), properties[index].BarName)}    
-    }*/
+    LoadJSONProperties()
+    ValidateProperties()
+    
 }
 
 
@@ -368,12 +365,10 @@ function LoadJSONProperties(){
     let propertiesjson = './data/properties.json';
     let responses = $.getJSON(propertiesjson, function(response) {
         for (let index = 0; index < response.length; index++) {
-            console.log(response[index]); 
             array[index] = response[index];
         }
         SaveItems("properties", JSON.stringify(array));
         properties = JSON.parse(GetItems("properties"));
-        console.log(properties);
     });
 }
 
@@ -383,8 +378,7 @@ function LoadJSONProductos(){
     let array = [];
     let productos = './data/productos.json';
     let responses = $.getJSON(productos, function(response) {
-        for (let index = 0; index < response.length; index++) {
-            console.log(response[index]); 
+        for (let index = 0; index < response.length; index++) { 
             array[index] = response[index];
         }
         SaveItems("productos", JSON.stringify(array));
@@ -398,7 +392,6 @@ function LoadJSONCategorias(){
     let categorias = './data/categorias.json';
     $.getJSON(categorias, function(response) {
         for (let index = 0; index < response.length; index++) {
-            console.log(response[index]); 
             array[index] = response[index];
         }
         SaveItems("categorias", JSON.stringify(array));
@@ -425,3 +418,13 @@ function EraseExistence(){
     MuestreoCategorias();
     MuestreoProductos();
 }
+
+function ValidateProperties(){
+    setTimeout(function(){
+    if(properties[0].BarName != null){SaveItems("BarName", JSON.stringify(properties[0].BarName))}else{SaveItems("BarName", JSON.stringify("DevBar"))}
+    $("#brand").text(JSON.parse(GetItems("BarName"))+ " - Console");
+      for (let index = 0; index < properties.length; index++) {
+          if(properties[index].LoadFromJSON){LoadJSON();}}
+              
+        }, 1000)
+  }
