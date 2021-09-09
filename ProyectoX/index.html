@@ -13,10 +13,10 @@
 
 <body onload=OnLoad();>
     <div class="Brand">
-        <h1 id="brand">DevBar</h1>
+        <h1 id="brand"></h1>
     </div>
     <div class="Slogan">
-        <p id="slogan">A bar made by developers for developers</p>
+        <p id="slogan"></p>
     </div>
     
     
@@ -35,7 +35,15 @@
     <div class="row" id="contenedor">
       <!-- Impresion de productos via JQuery -->
         </div>
+
+        <div id="Spinner">
+          <div class="spinner-border spinner" role="status">
+          </div>
+        </div>
   </div>
+
+  
+
 </section>
 
 
@@ -88,9 +96,8 @@
               </tr>
             </tbody>
           </table>
-
-
         </div>
+        
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" onclick="EmptyCart();">Vaciar</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>

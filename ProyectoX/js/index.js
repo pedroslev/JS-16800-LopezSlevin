@@ -13,6 +13,7 @@ class orden{
 }
 
 function OnLoad(){
+  Spinner();
   let todo = "todo";
   LoadJSONProperties();
   ValidateProperties();
@@ -266,6 +267,13 @@ function ValidateProperties(){
     $("#brand").text(JSON.parse(GetItems("BarName")));
     $("#slogan").text(properties[0].Slogan);
     for (let index = 0; index < properties.length; index++) {
-        if(properties[index].LoadFromJSON){LoadJSON();}}}, 1000)
+        if(properties[index].LoadFromJSON){LoadJSON();}}}, 2500)
         
+}
+function Spinner() {
+  $("#contenedor").fadeOut("slow", function(){
+    $("#Spinner").fadeIn("1000");
+    $("#Spinner").slideToggle("1500");
+    $("#contenedor").slideToggle("0");
+})
 }

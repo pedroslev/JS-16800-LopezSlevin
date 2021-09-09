@@ -17,11 +17,11 @@ let usersession;
 let properties;
 
 //OnLoad
-function OnLoad(){
+function OnLoad(){  
     LoginCheck();
     Obtencion();
     DarkMode(document.getElementById('darkmode').checked);
-    LoadJSONProperties()
+    LoadJSONProperties()    
     ValidateProperties()
     
 }

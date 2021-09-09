@@ -45,3 +45,10 @@ font-size: 0.5em;
     position: sticky;
     bottom: 1em;
 }
+
+.spinner{
+    margin-top: 10em;
+    margin-bottom: 10em;
+    width: 15em;
+    height: 15em;
+}
