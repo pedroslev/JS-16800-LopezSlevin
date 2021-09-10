@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>DevBar - Checkout</title>  
+    <title>Checkout</title>  
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <base href="/">
@@ -50,6 +50,10 @@
                             </div>
                           </div>
                           <div class="col-md-12 product-detail">
+                            <label for="PayerName" style="width: 8em;"><h5>Nombre *</h5></label>
+                            <input style="width: 10em;" class="form-control" id="PayerName">
+                          </div>
+                          <div class="col-md-12 product-detail">
                             <label for="observaciones"><h5>Observaciones</h5></label>
                             <textarea class="form-control" id="observaciones" rows="3"></textarea>
                           </div>
@@ -65,7 +69,7 @@
                   <div class="summary-item"><span class="text">Subtotal:</span><span class="price" id="cart-total"></span>
                     <span id="subtotal" class="subtotal"></span>
                   </div>
-                  <button class="btn btn-primary btn-lg btn-block" id="checkout-btn">Pagar en efectivo</button>
+                  <button class="btn btn-primary btn-lg btn-block" id="checkout-btn" onclick="ProcessCashCheckout(document.getElementById('observaciones').value, document.getElementById('PayerName').value)" >Pagar en efectivo</button>
                   <button class="btn btn-primary btn-lg btn-block" id="checkout-btn" onclick="alert('Funcion bajo mantenimiento :(');">Pagar Online</button>
                 </div>
               </div>

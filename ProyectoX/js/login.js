@@ -11,7 +11,7 @@ function Login(user, password){
         
         
         localStorage.setItem('usersession', true)
-        setTimeout(function(){window.location.href = "consola.html";}, 1500);
+        setTimeout(function(){window.location.href = "./consola.html";}, 1500);
         
 
     }else{

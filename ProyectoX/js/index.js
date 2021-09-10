@@ -21,7 +21,7 @@ function OnLoad(){
   setTimeout(function(){
     MuestreoProds(todo);
     MuestreoCategorias();
-    MuestreoCart();}, 2000);
+    MuestreoCart();}, 3000);
     
 }
 

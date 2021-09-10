@@ -19,11 +19,10 @@ let properties;
 //OnLoad
 function OnLoad(){  
     LoginCheck();
-    Obtencion();
+    LoadJSONProperties();
+    ValidateProperties();
     DarkMode(document.getElementById('darkmode').checked);
-    LoadJSONProperties()    
-    ValidateProperties()
-    
+    setTimeout(() => {Obtencion();}, 4000);
 }
 
 
