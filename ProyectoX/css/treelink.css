@@ -1,0 +1,32 @@
+.buttons{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.links{
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    grid-template-rows: auto;
+}
+
+.gridlinks{
+    display: grid;
+    grid-column-start: 2;
+}
+
+.gridlinks a{
+margin-bottom: 0.5em;
+}
+
+.instructions{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.blocks{
+    display: flex;
+    justify-content: space-around;
+}
