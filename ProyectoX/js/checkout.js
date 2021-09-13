@@ -45,7 +45,7 @@ function ProcessCashCheckout(observaciones, nombre){
     pedidos.push(ordenarray);
     console.log(pedidos)
     SaveItems("pedidos", JSON.stringify(pedidos))
-    detalles.push(new especificaciones(nombre, observaciones, "en preparacion"));
+    detalles.push(new especificaciones(nombre, observaciones, "pendiente"));
     SaveItems("especificaciones", JSON.stringify(detalles))
     setTimeout(function(){window.location.href = "./ProyectoX/clientqr.html";}, 1500);
 }
