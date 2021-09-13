@@ -47,5 +47,5 @@ function ProcessCashCheckout(observaciones, nombre){
     SaveItems("pedidos", JSON.stringify(pedidos))
     detalles.push(new especificaciones(nombre, observaciones, "pendiente"));
     SaveItems("especificaciones", JSON.stringify(detalles))
-    setTimeout(function(){window.location.href = "./ProyectoX/clientqr.html";}, 1500);
+    setTimeout(function(){window.location.href = "./clientqr.html";}, 1500);
 }
