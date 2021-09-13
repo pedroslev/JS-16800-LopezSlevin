@@ -26,27 +26,20 @@ for (let index = 0; index < pedidos.length; index++) {
             </div>          
             <p class="card-text" id="observaciones">${detalles[index].observaciones}</p>
         </div>
-        <ul class="list-group list-group-flush" id="items">     
+        <ul class="list-group list-group-flush" id="items${index}">     
         </ul>
         <div class="card-body d-flex" style="justify-content: center; margin-top: 1em; margin-bottom: 1em;">
-            <button type="button" class="btn btn-primary" onclick="DeliverOrder(${pedidos[index][0].id});">ENTREGAR</button>
+            <button type="button" class="btn btn-primary" onclick="DeliverOrder(${index});">ENTREGAR</button>
         </div>
         </div>`;
         $("#pedidos").append(content);
         for (let index = 0; index < pedidos.length; index++) {
+            $("#items" + index).empty();
             for (let i = 0; i < pedidos[index].length; i++) {
                 let prod = `<li class="list-group-item">${pedidos[index][i].nombre} x   ${pedidos[index][i].cantidad}</li>`
-                $("#items").append(prod); 
+                $("#items" + index).append(prod); 
                     }
                 }
-            }else{
-                let emptyorder = `<div class="d-flex" style="justify-content: center; padding-top: 10em; flex-direction: column; align-items: center;">
-                <h4 style="padding-bottom: 1em;">No hay pedidos!</h4>
-                <div class="spinner-border" role="status">
-                  <span class="visually-hidden">Loading...</span>
-                </div>
-              </div>`;
-              $("#pedidos").append(emptyorder); 
             } 
         }
     }else{

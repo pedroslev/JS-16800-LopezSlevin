@@ -7,7 +7,7 @@ class especificaciones{
     }
 }
 
-let detalles = [];
+let detalles = JSON.parse(GetItems("especificaciones"));
 
 function OnLoad(){
 
@@ -43,8 +43,9 @@ function ProcessCashCheckout(observaciones, nombre){
     if(JSON.parse(GetItems("pedidos")) == null){pedidos = []}else{pedidos = JSON.parse(GetItems("pedidos"));}
     let ordenarray = JSON.parse(GetItems("orden"));
     pedidos.push(ordenarray);
-    console.log(pedidos)
     SaveItems("pedidos", JSON.stringify(pedidos))
+    detalles = JSON.parse(GetItems("especificaciones"))
+    if(detalles == null){detalles = []}
     detalles.push(new especificaciones(nombre, observaciones, "pendiente"));
     SaveItems("especificaciones", JSON.stringify(detalles))
     setTimeout(function(){window.location.href = "./clientqr.html";}, 1500);
