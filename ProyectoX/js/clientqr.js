@@ -6,7 +6,7 @@ function OnLoad(){
   let orden = JSON.parse(localStorage.getItem("orden"));
   let precio = JSON.parse(localStorage.getItem("total"));
   new QRCode(document.getElementById("qrcode"), "http:/devbar.hazear.com/facturacion.html?precio="+ precio);
-
+  console.log("http:/devbar.hazear.com/facturacion.html?precio="+ precio)
 
   function ValidateProperties(){
     setTimeout(function(){
